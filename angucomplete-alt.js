@@ -132,6 +132,12 @@
         }
       });
 
+      scope.$watch('showDropdown', function (newval, oldval) {
+          if (newval !== oldval && newval === true) {
+              dropdownWidth();
+          }
+      });
+            
       function handleInputChange(newval, initial) {
         if (newval) {
           if (typeof newval === 'object') {
@@ -336,6 +342,10 @@
         dd.scrollTop = dd.scrollTop + offset;
       }
 
+      function dropdownWidth() {
+          dd.style.width = inputField[0].getBoundingClientRect().width + 'px';
+      } 
+      
       function updateInputField(){
         var current = scope.results[scope.currentIndex];
         if (scope.matchClass) {
